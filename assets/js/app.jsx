@@ -27,8 +27,15 @@ import {LiveSocket} from "phoenix_live_view"
 import topbar from "../vendor/topbar"
 
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import { Main } from "./Main";
+
+// roboto font
+// import '@fontsource/roboto/300.css';
+// import '@fontsource/roboto/400.css';
+// import '@fontsource/roboto/500.css';
+// import '@fontsource/roboto/700.css';
+
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 let liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToken}})
@@ -48,5 +55,12 @@ liveSocket.connect()
 window.liveSocket = liveSocket
 
 
-const main = document.getElementById("main");
-ReactDOM.render(<Main name="BrandingHut" />, main);
+// const main = document.getElementById("main");
+// ReactDOM.createRoot(<Main name="BrandingHut" />, main);
+
+const root = ReactDOM.createRoot(document.getElementById("main"));
+root.render(
+  <React.StrictMode>
+    <Main name="BrandingHut" />
+  </React.StrictMode>
+);

@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '@mui/material/Button';
 
 interface MainProps {
   name: string;
@@ -9,7 +10,10 @@ export const Main: React.FC<MainProps> = (props: MainProps) => {
   return (
     <section className="phx-hero">
       <h1>{name} with TypeScript and React!</h1>
-      <p>We are ready to go!</p>
+
+      <div>
+      <Button variant="contained">Ready!</Button>
+    </div>
     </section>
   );
 };
