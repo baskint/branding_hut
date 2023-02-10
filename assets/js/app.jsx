@@ -29,6 +29,18 @@ import topbar from "../vendor/topbar"
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Main } from "./Main";
+import { Ads } from './Ads';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from "recoil";
 
 // roboto font
 // import '@fontsource/roboto/300.css';
@@ -58,9 +70,23 @@ window.liveSocket = liveSocket
 // const main = document.getElementById("main");
 // ReactDOM.createRoot(<Main name="BrandingHut" />, main);
 
+const router = createBrowserRouter([
+  {
+    path: "/ads",
+    element: <Ads/>,
+  },
+  {
+    path: "/",
+    element: <Main name="Branding Hut" />,
+  },
+]);
+
+
 const root = ReactDOM.createRoot(document.getElementById("main"));
 root.render(
   <React.StrictMode>
-    <Main name="BrandingHut" />
+    <RecoilRoot>
+      <RouterProvider router={router} />
+    </RecoilRoot>
   </React.StrictMode>
 );
