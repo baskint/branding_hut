@@ -30,6 +30,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { Main } from "./Main";
 import { Ads } from './Ads';
+import TodoList from "./components/TodoList";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -76,9 +77,14 @@ const router = createBrowserRouter([
     element: <Ads/>,
   },
   {
+    path: "/todo",
+    element: <TodoList/>,
+  },
+  {
     path: "/",
     element: <Main name="Branding Hut" />,
   },
+
 ]);
 
 
