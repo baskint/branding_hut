@@ -1,8 +1,9 @@
-import { atom, selector } from "recoil";
+import { atom, selector } from 'recoil';
+import { ItemProps } from './types';
 
 const todoListState = atom({
   key: "todoListState",
-  default: []
+  default: [] as ItemProps[]
 });
 
 const todoListFilterState = atom({
@@ -18,9 +19,9 @@ const filteredTodoListState = selector({
 
     switch (filter) {
       case "Show Completed":
-        return list.filter((item) => item.isComplete);
+        return list.filter((item: ItemProps) => item.isComplete);
       case "Show Uncompleted":
-        return list.filter((item) => !item.isComplete);
+        return list.filter((item: ItemProps) => !item.isComplete);
       default:
         return list;
     }
@@ -32,11 +33,12 @@ const todoListStatsState = selector({
   get: ({ get }) => {
     const todoList = get(todoListState);
     const totalNum = todoList.length;
-    const totalCompletedNum = todoList.filter((item) => item.isComplete).length;
+    const totalCompletedNum = todoList
+      .filter((item: ItemProps) => item.isComplete).length;
     let allText = "";
     todoList
-      .filter((item) => !item.isComplete)
-      .map((item) => (allText = allText + " " + item.text));
+      .filter((item: ItemProps) => !item.isComplete)
+      .map((item: ItemProps) => (allText = allText + " " + item.text));
     const totalUncompletedNum = totalNum - totalCompletedNum;
     const percentCompleted = totalNum === 0 ? 0 : totalCompletedNum / totalNum;
 
