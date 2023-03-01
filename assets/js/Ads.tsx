@@ -1,13 +1,13 @@
-import React from "react";
-import { atom, selector, useRecoilValue, useRecoilState } from "recoil";
+import React from 'react';
+import { atom, selector, useRecoilValue, useRecoilState } from 'recoil';
 
 const adState = atom({
-  key: "adState", // unique ID (with respect to other atoms/selectors)
-  default: "", // default value (aka initial value)
+  key: 'adState', // unique ID (with respect to other atoms/selectors)
+  default: '', // default value (aka initial value)
 });
 
 const charCountState = selector({
-  key: "charCountState", // unique ID (with respect to other atoms/selectors)
+  key: 'charCountState', // unique ID (with respect to other atoms/selectors)
   get: ({ get }) => {
     const text = get(adState);
 
@@ -24,7 +24,7 @@ function TextInput() {
 
   return (
     <div>
-      <input type="text" value={text} onChange={onChange} />
+      <input type='text' value={text} onChange={onChange} />
       <br />
       Echo: {text}
     </div>

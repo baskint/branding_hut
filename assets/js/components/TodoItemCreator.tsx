@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useSetRecoilState } from "recoil";
+import React, { useState } from 'react';
+import { useSetRecoilState } from 'recoil';
 import { todoListState } from './todoListState';
 
 // utility for creating unique Id
@@ -9,7 +9,7 @@ function getId() {
 }
 
 function TodoItemCreator() {
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState('');
   const setTodoList = useSetRecoilState(todoListState);
 
   const addItem = () => {
@@ -21,7 +21,7 @@ function TodoItemCreator() {
         isComplete: false
       }
     ]);
-    setInputValue("");
+    setInputValue('');
   };
 
   const onChange = ({ target: { value } }) => {
@@ -30,7 +30,7 @@ function TodoItemCreator() {
 
   return (
     <div>
-      <input type="text" value={inputValue} onChange={onChange} />
+      <input type='text' value={inputValue} onChange={onChange} />
       <button onClick={addItem}>Add</button>
     </div>
   );

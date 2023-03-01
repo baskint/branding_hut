@@ -53,9 +53,9 @@ const TodoItem = ({ item }) => {
       bgcolor: 'background.paper',
       borderRadius: 1,
     }}>
-      <input type="text" value={item.text} onChange={editItemText} />
+      <input type='text' value={item.text} onChange={editItemText} />
       <input
-        type="checkbox"
+        type='checkbox'
         checked={item.isComplete}
         onChange={toggleItemCompletion}
       />
