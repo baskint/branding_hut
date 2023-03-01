@@ -28,6 +28,8 @@ defmodule BrandingHutWeb.ConnCase do
 
       # The default endpoint for testing
       @endpoint BrandingHutWeb.Endpoint
+
+      use BrandingHut, :verified_routes
     end
   end
 

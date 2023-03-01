@@ -17,12 +17,15 @@ defmodule BrandingHutWeb do
   and import those modules here.
   """
 
+  def static_paths, do: ~w(assets fonts images favicon.ico robots.txt)
   def controller do
     quote do
       use Phoenix.Controller, namespace: BrandingHutWeb
 
       import Plug.Conn
       import BrandingHutWeb.Gettext
+
+      unquote(verified_routes())
       alias BrandingHutWeb.Router.Helpers, as: Routes
     end
   end
@@ -97,8 +100,18 @@ defmodule BrandingHutWeb do
 
       import BrandingHutWeb.ErrorHelpers
       import BrandingHutWeb.Gettext
+      unquote(verified_routes())
       alias BrandingHutWeb.Router.Helpers, as: Routes
     end
+  end
+
+  def verified_routes do
+    quote do
+      use Phoenix.VerifiedRoutes,
+        endpoint: BrandingHutWeb.Endpoint,
+        router: BrandingHutWeb.Router,
+        statics: BrandingHutWeb.static_paths()
+     end
   end
 
   @doc """
