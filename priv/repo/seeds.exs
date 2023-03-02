@@ -2,7 +2,7 @@ alias BrandingHut.Affairs
 
 act_data = [
   %{
-    act_date_time: ~N[2023-02-07 04:17:00],
+    act_date_time: ~N[2023-02-06 04:17:00],
     bounce_rate: 1.2,
     click_thru_rate: 1.3,
     cpa: 0.5,
