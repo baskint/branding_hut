@@ -10,9 +10,12 @@ defmodule BrandingHutWeb.Router do
     plug :put_secure_browser_headers
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
-  end
+  forward "/api", Absinthe.Plug,
+    schema: BrandingHutWeb.Schema 
+
+  # pipeline :api do
+  #   plug :accepts, ["json"]
+  # end
 
   scope "/", BrandingHutWeb do
     pipe_through :browser
