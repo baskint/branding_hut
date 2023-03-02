@@ -19,7 +19,27 @@ defmodule BrandingHut.Affairs.SparkAct do
   @doc false
   def changeset(spark_act, attrs) do
     spark_act
-    |> cast(attrs, [:act_date_time, :palavers, :yells, :messages, :jottings, :bounce_rate, :click_thru_rate, :cpa, :view_through])
-    |> validate_required([:act_date_time, :palavers, :yells, :messages, :jottings, :bounce_rate, :click_thru_rate, :cpa, :view_through])
+    |> cast(attrs, [
+      :act_date_time,
+      :palavers,
+      :yells,
+      :messages,
+      :jottings,
+      :bounce_rate,
+      :click_thru_rate,
+      :cpa,
+      :view_through
+    ])
+    |> validate_required([
+      :act_date_time,
+      :palavers,
+      :yells,
+      :messages,
+      :jottings,
+      :bounce_rate,
+      :click_thru_rate,
+      :cpa,
+      :view_through
+    ])
   end
 end

@@ -8,7 +8,17 @@ defmodule BrandingHut.AffairsTest do
 
     import BrandingHut.AffairsFixtures
 
-    @invalid_attrs %{act_date_time: nil, bounce_rate: nil, click_thru_rate: nil, cpa: nil, jottings: nil, messages: nil, palavers: nil, view_through: nil, yells: nil}
+    @invalid_attrs %{
+      act_date_time: nil,
+      bounce_rate: nil,
+      click_thru_rate: nil,
+      cpa: nil,
+      jottings: nil,
+      messages: nil,
+      palavers: nil,
+      view_through: nil,
+      yells: nil
+    }
 
     test "list_spark_acts/0 returns all spark_acts" do
       spark_act = spark_act_fixture()
@@ -21,7 +31,17 @@ defmodule BrandingHut.AffairsTest do
     end
 
     test "create_spark_act/1 with valid data creates a spark_act" do
-      valid_attrs = %{act_date_time: ~N[2023-03-01 02:47:00], bounce_rate: "120.5", click_thru_rate: "120.5", cpa: "120.5", jottings: 42, messages: 42, palavers: 42, view_through: "120.5", yells: 42}
+      valid_attrs = %{
+        act_date_time: ~N[2023-03-01 02:47:00],
+        bounce_rate: "120.5",
+        click_thru_rate: "120.5",
+        cpa: "120.5",
+        jottings: 42,
+        messages: 42,
+        palavers: 42,
+        view_through: "120.5",
+        yells: 42
+      }
 
       assert {:ok, %SparkAct{} = spark_act} = Affairs.create_spark_act(valid_attrs)
       assert spark_act.act_date_time == ~N[2023-03-01 02:47:00]
@@ -41,7 +61,18 @@ defmodule BrandingHut.AffairsTest do
 
     test "update_spark_act/2 with valid data updates the spark_act" do
       spark_act = spark_act_fixture()
-      update_attrs = %{act_date_time: ~N[2023-03-02 02:47:00], bounce_rate: "456.7", click_thru_rate: "456.7", cpa: "456.7", jottings: 43, messages: 43, palavers: 43, view_through: "456.7", yells: 43}
+
+      update_attrs = %{
+        act_date_time: ~N[2023-03-02 02:47:00],
+        bounce_rate: "456.7",
+        click_thru_rate: "456.7",
+        cpa: "456.7",
+        jottings: 43,
+        messages: 43,
+        palavers: 43,
+        view_through: "456.7",
+        yells: 43
+      }
 
       assert {:ok, %SparkAct{} = spark_act} = Affairs.update_spark_act(spark_act, update_attrs)
       assert spark_act.act_date_time == ~N[2023-03-02 02:47:00]

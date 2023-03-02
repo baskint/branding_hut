@@ -20,7 +20,7 @@ defmodule BrandingHutWeb.Router do
     forward "/", Absinthe.Plug, schema: BrandingHutWeb.Schema
   end
 
-  if Mix.env == :dev do
+  if Mix.env() == :dev do
     forward "/graphiql", Absinthe.Plug.GraphiQL, schema: BrandingHutWeb.Schema
   end
 

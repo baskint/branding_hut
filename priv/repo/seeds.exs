@@ -10,7 +10,7 @@ act_data = [
     messages: 13,
     palavers: 78,
     view_through: 0.9,
-    yells: 110345
+    yells: 110_345
   },
   %{
     act_date_time: ~N[2023-02-07 04:17:00],
@@ -36,7 +36,6 @@ act_data = [
   }
 ]
 
-
-Enum.each(act_data, fn(data) ->
+Enum.each(act_data, fn data ->
   Affairs.create_spark_act(data)
 end)
