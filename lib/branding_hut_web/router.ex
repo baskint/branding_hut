@@ -10,8 +10,19 @@ defmodule BrandingHutWeb.Router do
     plug :put_secure_browser_headers
   end
 
-  forward "/api", Absinthe.Plug,
-    schema: BrandingHutWeb.Schema 
+  pipeline :graphql do
+    # Will be used later
+  end
+
+  scope "/api" do
+    pipe_through :graphql
+
+    forward "/", Absinthe.Plug, schema: BrandingHutWeb.Schema
+  end
+
+  if Mix.env == :dev do
+    forward "/graphiql", Absinthe.Plug.GraphiQL, schema: BrandingHutWeb.Schema
+  end
 
   # pipeline :api do
   #   plug :accepts, ["json"]
