@@ -1,0 +1,25 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs';
+import { MemoryRouter } from 'react-router-dom';
+
+import { SparkActsTable } from '../js/pages/SparkActs/SparkActsTable';
+
+<Meta title="Pages/SparkActTable" component={SparkActsTable} />
+
+# SparkActsTable
+
+export const Template = (args) => (
+  <MemoryRouter>
+    <SparkActTable {...args} />
+  </MemoryRouter>
+);
+
+<Preview>
+  <Story
+    name="Default"
+    args={{
+      rows: [],
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Preview>

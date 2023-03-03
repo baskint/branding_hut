@@ -11,7 +11,7 @@ export interface SparkActItem {
   yells: number;
 }
 
-export type SparkActListResponse {
+export type SparkActListResponse = {
   sparkActs: SparkActItem[];
 }
 
