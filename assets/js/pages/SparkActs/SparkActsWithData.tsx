@@ -8,6 +8,8 @@ export const SparkActsWithData = () => {
   const { data, isLoading, error } = useSparkActs();
   const resp = data as SparkActListResponse;
 
+  console.log(resp && resp.sparkActs);
+
   return resp ? (
     <Box>
       <p>count: {resp.sparkActs.length}</p>

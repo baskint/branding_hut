@@ -20,3 +20,8 @@ export interface SparkActProps {
   isLoading: boolean;
   error: string;
 }
+
+export interface SparkActsTableProps {
+  rows: SparkActItem[];
+  isLoading: boolean;
+}

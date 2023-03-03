@@ -3,21 +3,58 @@ import { MemoryRouter } from 'react-router-dom';
 
 import { SparkActsTable } from '../js/pages/SparkActs/SparkActsTable';
 
-<Meta title="Pages/SparkActTable" component={SparkActsTable} />
+<Meta title='Pages/SparkActTable' component={SparkActsTable} />
 
 # SparkActsTable
 
 export const Template = (args) => (
   <MemoryRouter>
-    <SparkActTable {...args} />
+    <SparkActsTable {...args} />
   </MemoryRouter>
 );
 
 <Preview>
   <Story
-    name="Default"
+    name='Default'
     args={{
-      rows: [],
+      rows: [
+        {
+          actDateTime: '2023-02-06T04:17:00',
+          bounceRate: '1.2',
+          click_thru_rate: '1.3',
+          cpa: '0.5',
+          id: '1',
+          jottings: 45,
+          messages: 13,
+          palavers: 78,
+          view_through: '0.9',
+          yells: 110345,
+        },
+        {
+          actDateTime: '2023-02-07T04:17:00',
+          bounceRate: '1.5',
+          click_thru_rate: '1.6',
+          cpa: '0.7',
+          id: '2',
+          jottings: 13,
+          messages: 18,
+          palavers: 42,
+          view_through: '1.8',
+          yells: 83959,
+        },
+        {
+          actDateTime: '2023-02-08T04:17:00',
+          bounceRate: '1.2',
+          click_thru_rate: '1.4',
+          cpa: '0.5',
+          id: '3',
+          jottings: 13,
+          messages: 18,
+          palavers: 88,
+          view_through: '0.95',
+          yells: 67053,
+        },
+      ],
     }}
   >
     {Template.bind({})}
