@@ -21,12 +21,12 @@ export const useSparkActs = () => {
   }
   `;
 
-  const { data, error, isLoading } = useSWR(saQuery, (query) =>
+  const { data, error, isLoading } = useSWR(saQuery, (query: string) =>
     request(API_ENDPOINT, query)
   );
 
   return {
-    data: data,
+    data,
     isLoading,
     error,
   };
