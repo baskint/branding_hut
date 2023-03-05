@@ -15,19 +15,20 @@
     <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
   </head>
-  <body>
+  <body class="flex flex-col min-h-screen justify-center">
     <header>
-      <section class="container">
-        <nav>
-          <ul>
-            <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-              <li class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
-            <% end %>
-          </ul>
-        </nav>
-        <h1 class="text-red-500 text-5xl font-bold text-center">Tailwind CSS</h1>
-      </section>
+
     </header>
     <%= @inner_content %>
   </body>
+  <footer class="text-center text-white">
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.2);">
+        &#127279; <script>document.write(/\d{4}/.exec(Date())[0])</script>
+ -
+        <a class="text-white" href="https://baskintapkan.com/">Tapkan Consulting</a>
+      <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
+        <li class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
+      <% end %>
+      </div>
+  </footer>
 </html>

@@ -30,6 +30,7 @@ import ReactDOM from 'react-dom/client';
 import { Main } from './Main';
 import { Ads } from './Ads';
 import TodoList from './components/TodoList';
+import { HutAppBar } from './components/HutAppBar'
 import { SparkActsWithData } from './pages/SparkActs';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import {
@@ -76,11 +77,11 @@ const router = createBrowserRouter([
     element: <TodoList />,
   },
   {
-    path: '/spark-acts',
+    path: '/',
     element: <SparkActsWithData />,
   },
   {
-    path: '/',
+    path: '/main',
     element: <Main name='Branding Hut' />,
   },
 ]);
@@ -89,6 +90,7 @@ const root = ReactDOM.createRoot(document.getElementById('main'));
 root.render(
   <React.StrictMode>
     <RecoilRoot>
+      <HutAppBar />
       <RouterProvider router={router} />
     </RecoilRoot>
   </React.StrictMode>

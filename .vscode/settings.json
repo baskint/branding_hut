@@ -1,5 +1,8 @@
 {
     "cSpell.words": [
         "esbuild"
-    ]
+    ],
+    "emmet.includeLanguages": {
+        "phoenix-heex": "html"
+    }
 }
