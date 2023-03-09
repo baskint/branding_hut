@@ -33,9 +33,17 @@ import TodoList from './components/TodoList';
 import { HutAppBar } from './components/HutAppBar'
 import { SparkActsWithData } from './pages/SparkActs';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import {
-  RecoilRoot,
-} from 'recoil';
+import { RecoilRoot } from 'recoil';
+import { red } from '@mui/material/colors';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: red[900],
+    },
+  },
+});
 
 // roboto font
 // import '@fontsource/roboto/300.css';
@@ -89,9 +97,11 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('main'));
 root.render(
   <React.StrictMode>
-    <RecoilRoot>
-      <HutAppBar />
-      <RouterProvider router={router} />
-    </RecoilRoot>
+    <ThemeProvider theme={theme}>
+      <RecoilRoot>
+        <HutAppBar />
+        <RouterProvider router={router} />
+      </RecoilRoot>
+    </ThemeProvider>
   </React.StrictMode>
 );
