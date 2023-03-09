@@ -17,3 +17,31 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * Docs: https://hexdocs.pm/phoenix
   * Forum: https://elixirforum.com/c/phoenix-forum
   * Source: https://github.com/phoenixframework/phoenix
+
+
+### To create new mutation on spark act table, use this:
+```
+mutation {
+  createSparkAct(
+    actDateTime: "2022-03-09T12:34:56Z",
+    bounceRate: 0.5,
+    clickThruRate: 0.7,
+    cpa: 100.0,
+    jottings: 10,
+    messages: 20,
+    palavers: 30,
+    viewThrough: 0.8,
+    yells: 40
+  ){
+    id
+    actDateTime
+    bounceRate
+    clickThruRate
+    cpa
+    jottings
+    palavers
+    viewThrough
+    yells
+  }
+}
+```

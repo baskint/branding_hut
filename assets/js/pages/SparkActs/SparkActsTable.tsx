@@ -27,9 +27,9 @@ export const SparkActsTable = ({ rows, isLoading }: SparkActsTableProps) => (
         </TableRow>
       </TableHead>
       <TableBody>
-        {rows.map((row) => (
+        {rows.map((row, idx) => (
           <TableRow
-            key={row.actDateTime}
+            key={`${row.actDateTime}-${idx}`}
             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
           >
             <TableCell component='th' scope='row'>
