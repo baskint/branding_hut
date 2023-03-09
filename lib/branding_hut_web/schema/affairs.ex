@@ -27,4 +27,10 @@ defmodule BrandingHutWeb.Schema.Affairs do
       resolve(&Resolvers.Affairs.list_spark_acts/2)
     end
   end
+
+  object :post do
+    field :id, :id
+    field :title, :string
+    field :body, :string
+  end
 end

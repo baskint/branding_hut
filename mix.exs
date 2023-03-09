@@ -35,7 +35,7 @@ defmodule BrandingHut.MixProject do
     [
       {:phoenix, "~> 1.7.0"},
       {:phoenix_ecto, "~> 4.4"},
-      {:ecto_sql, "~> 3.6"},
+      {:ecto_sql, "~> 3.9.2"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_view, "~> 2.0.2"},
       {:phoenix_html, "~> 3.0"},

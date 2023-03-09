@@ -7,6 +7,7 @@ defmodule BrandingHut.Affairs do
   alias BrandingHut.Repo
 
   alias BrandingHut.Affairs.SparkAct
+  alias BrandingHut.Affairs.Post
 
   @doc """
   Returns the list of spark_acts.
@@ -49,32 +50,10 @@ defmodule BrandingHut.Affairs do
       {:error, %Ecto.Changeset{}}
 
   """
-  # def create_spark_act(attrs \\ %{}) do
-  #   %SparkAct{}
-  #   |> SparkAct.changeset(attrs)
-  #   |> Repo.insert()
-  # end
-
-  def create_spark_act(sa) do
-    # changeset = SparkAct.changeset(%SparkAct{}, args)
-
-    case Repo.insert!(sa,
-      on_conflict: :nothing
-    ) do
-      {:ok, spark_act} -> spark_act
-      {:error, _changeset} -> "cannot create record"
-      # spark_act -> spark_act
-    end
-    # second way...
-    # %Device{stat: []}
-    # |> Ecto.Changeset.change(args)
-    # |> Ecto.Changeset.unique_constraint(:name)
-    # |> Repo.insert
-    # |> case do
-    #   {:ok, device} -> device
-    #   {:error, _} -> Repo.get_by!(Device, name: args.name)
-    # end
-
+  def create_spark_act(attrs \\ %{}) do
+    %SparkAct{}
+    |> SparkAct.changeset(attrs)
+    |> Repo.insert()
   end
 
   @doc """
@@ -122,5 +101,15 @@ defmodule BrandingHut.Affairs do
   """
   def change_spark_act(%SparkAct{} = spark_act, attrs \\ %{}) do
     SparkAct.changeset(spark_act, attrs)
+  end
+
+  def list_posts do
+    Repo.all(Post)
+  end
+
+  def create_post(attrs \\ %{}) do
+    %Post{}
+    |> Post.changeset(attrs)
+    |> Repo.insert
   end
 end
