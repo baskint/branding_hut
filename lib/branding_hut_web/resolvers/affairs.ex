@@ -1,6 +1,6 @@
 defmodule BrandingHutWeb.Resolvers.Affairs do
   alias BrandingHut.Affairs
-  alias BrandingHut.Repo
+  # alias BrandingHut.Repo
 
   def list_spark_acts(_args, _context) do
     {:ok, Affairs.list_spark_acts()}
@@ -20,14 +20,13 @@ defmodule BrandingHutWeb.Resolvers.Affairs do
       yells: input.yells
     }
 
-
-    Affairs.create_spark_act(spark_act)
+    inserted = Affairs.create_spark_act(spark_act)
     # inserted
     # Persist the `spark_act` to the database using Ecto
     # {:ok, inserted} = Repo.insert(spark_act)
 
-    # IO.inspect(spark_act)
+    IO.inspect(inserted)
     # Return the newly created `spark_act`
-    # inserted
+    inserted
   end
 end

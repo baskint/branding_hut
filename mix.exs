@@ -50,6 +50,7 @@ defmodule BrandingHut.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
+      {:absinthe, "~> 1.7.1"},
       {:absinthe_plug, "~> 1.5"},
       {:tailwind, "~> 0.1", runtime: Mix.env() == :dev}
     ]

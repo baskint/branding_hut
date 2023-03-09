@@ -63,7 +63,7 @@ defmodule BrandingHut.Affairs do
     ) do
       {:ok, spark_act} -> spark_act
       {:error, _changeset} -> "cannot create record"
-      spark_act -> spark_act
+      # spark_act -> spark_act
     end
     # second way...
     # %Device{stat: []}
