@@ -12,7 +12,7 @@ import { SparkActsTableProps } from './types';
 
 export const SparkActsTable = ({ rows, isLoading }: SparkActsTableProps) => (
   <TableContainer component={Paper}>
-    <Table sx={{ minWidth: 650 }} aria-label='simple table'>
+    <Table sx={{ minWidth: 650, mt: 8 }} aria-label='simple table'>
       <TableHead>
         <TableRow>
           <TableCell>Act Date</TableCell>

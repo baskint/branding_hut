@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import { Box, Button } from '@mui/material';
 import { useSparkActs } from './useSparkActs';
+import { createSparkAct } from './createSparkAct';
 import { SparkActListResponse } from './types';
 import { SparkActsTable } from './SparkActsTable';
 
@@ -8,10 +9,9 @@ export const SparkActsWithData = () => {
   const { data, isLoading, error } = useSparkActs();
   const resp = data as SparkActListResponse;
 
-  console.log(resp && resp.sparkActs);
-
   const onNew = useCallback(async () => {
-     await console.log('test');
+     const resp = await createSparkAct();
+     console.log('response: ', resp);
   }, []);
 
   return resp ? (

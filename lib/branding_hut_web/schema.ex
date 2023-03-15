@@ -33,6 +33,7 @@ defmodule BrandingHutWeb.Schema do
   mutation do
     @desc "Create a spark act"
     field :create_spark_act, :spark_act do
+      arg :id, :integer
       arg :act_date_time, non_null(:naive_datetime)
       arg :bounce_rate, :decimal
       arg :click_thru_rate, :decimal
