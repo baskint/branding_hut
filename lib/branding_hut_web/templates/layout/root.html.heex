@@ -22,12 +22,14 @@
     <%= @inner_content %>
   </body>
   <footer class="text-center text-white">
-  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.2);">
+  <div class="text-center p-4" style="background-color: #b71c1c;">
         &#127279; <script>document.write(/\d{4}/.exec(Date())[0])</script>
  -
-        <a class="text-white" href="https://baskintapkan.com/">Tapkan Consulting</a>
+        <a class="text-white" href="https://branding-hut.fly.dev">Branding Hut</a>
       <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-        <li class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
+        <div class="font-medium text-blue-600 dark:text-white hover:underline">
+          <%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %>
+        </div>
       <% end %>
       </div>
   </footer>
