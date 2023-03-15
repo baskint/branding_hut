@@ -1,5 +1,6 @@
 // import useSWR from 'swr';
-import { request, GraphQLClient } from 'graphql-request';
+import { GraphQLClient } from 'graphql-request';
+import { format } from 'date-fns';
 
 const API_ENDPOINT = '/api/graphql';
 
@@ -42,9 +43,9 @@ export const createSparkAct = async () => {
     }
   }
 `
-
+const actDateTime = format(new Date(),'yyyy-MM-dd hh:mm:ss');
 const variables = {
-    actDateTime: '2023-03-09T15:00:00',
+    actDateTime: actDateTime,
     jottings: 5,
     bounceRate: 3.87,
     clickThruRate: 1.8,
@@ -54,11 +55,6 @@ const variables = {
     yells: 94,
     viewThrough: 2.5
   }
-
-  // const { data, error, isLoading } = useSWR(, (query: string) =>
-  //   request(API_ENDPOINT, mutation, variables)
-  // );
-  // const data = await request(mutation, variables)
 
   const data = await graphQLClient.request(mutation, variables);
   console.log(JSON.stringify(data, undefined, 2));

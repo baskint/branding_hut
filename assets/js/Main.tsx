@@ -1,6 +1,6 @@
 import React from 'react';
-import { 
-  Box, 
+import {
+  Box,
   Container,
   Typography,
   Button,
