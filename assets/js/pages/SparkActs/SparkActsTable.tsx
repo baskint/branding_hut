@@ -12,10 +12,10 @@ import { SparkActsTableProps } from './types';
 
 export const SparkActsTable = ({ rows, isLoading }: SparkActsTableProps) => (
   <TableContainer component={Paper}>
-    <Table sx={{ minWidth: 650, mt: 8 }} aria-label='simple table'>
+    <Table sx={{ minWidth: 650 }} aria-label='simple table'>
       <TableHead>
         <TableRow>
-          <TableCell>Act Date</TableCell>
+          <TableCell>Happened On</TableCell>
           <TableCell align='right'>Bounce Rate</TableCell>
           <TableCell align='right'>Click Thru Rate</TableCell>
           <TableCell align='right'>CPA</TableCell>
@@ -36,12 +36,12 @@ export const SparkActsTable = ({ rows, isLoading }: SparkActsTableProps) => (
               {format(Date.parse(row.actDateTime), 'M/d/yyyy hh:mma')}
             </TableCell>
             <TableCell align='right'>{row.bounceRate}</TableCell>
-            <TableCell align='right'>{row.click_thru_rate}</TableCell>
+            <TableCell align='right'>{row.clickThruRate}</TableCell>
             <TableCell align='right'>{row.cpa}</TableCell>
             <TableCell align='right'>{row.jottings}</TableCell>
             <TableCell align='right'>{row.messages}</TableCell>
             <TableCell align='right'>{row.palavers}</TableCell>
-            <TableCell align='right'>{row.view_through}</TableCell>
+            <TableCell align='right'>{row.viewThrough}</TableCell>
             <TableCell align='right'>{row.yells}</TableCell>
           </TableRow>
         ))}

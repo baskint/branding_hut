@@ -10,12 +10,12 @@ export const useSparkActs = () => {
       id
       actDateTime
       bounceRate
-      click_thru_rate
+      clickThruRate
       cpa
       jottings
       messages
       palavers
-      view_through
+      viewThrough
       yells
     }
   }

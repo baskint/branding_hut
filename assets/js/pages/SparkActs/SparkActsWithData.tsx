@@ -4,6 +4,7 @@ import { useSparkActs } from './useSparkActs';
 import { createSparkAct } from './createSparkAct';
 import { SparkActListResponse } from './types';
 import { SparkActsTable } from './SparkActsTable';
+import { SparkActForm } from '../../components/SparkAct/SparkActForm';
 
 export const SparkActsWithData = () => {
   const { data, isLoading, error } = useSparkActs();
@@ -15,7 +16,8 @@ export const SparkActsWithData = () => {
   }, []);
 
   return resp ? (
-   <Box>
+   <Box sx={{ mt: 12 }}>
+    <SparkActForm />
     <SparkActsTable
       rows={resp.sparkActs}
       isLoading={isLoading}
