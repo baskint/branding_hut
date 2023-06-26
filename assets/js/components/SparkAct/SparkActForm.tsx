@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { format } from 'date-fns';
-import { Grid, Box } from '@mui/material';
-import { TextField, FormControl } from '@mui/material';
+import { Grid, Box, TextField, InputAdornment } from '@mui/material';
 import dayjs, { Dayjs } from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -12,7 +11,6 @@ import { SparkActItem } from '../../api-types/sparkAct';
 import { ActDateTime } from './styles';
 
 export const SparkActForm = () => {
-  console.log('form implementation');
   const {
     register,
     control,
@@ -25,6 +23,23 @@ export const SparkActForm = () => {
     }
   });
   const [value, setValue] = useState<Dayjs | null>(dayjs());
+
+  useEffect(() => {
+    // Generate random numbers
+    const randomValues = {
+      bounceRate: (Math.random() * 10),
+      clickThruRate: (Math.random() * 10),
+      cpa: (Math.random()),
+      jottings: Math.floor(Math.random() * 10) + 1,
+      messages: Math.floor(Math.random() * 10) + 1,
+      palavers: Math.floor(Math.random() * 10) + 1,
+      viewThrough: (Math.random() * 10),
+      yells: Math.floor(Math.random() * 10) + 1,
+    };
+
+    // Set the random values as default values
+    reset(randomValues);
+  }, []);
 
   return (
     <form
@@ -60,6 +75,12 @@ export const SparkActForm = () => {
                   label="Bounce Rate"
                   type="number"
                   required
+                  inputProps={{
+                    value: `${field.value.toFixed(2)}`,
+                  }}
+                  InputProps={{
+                    endAdornment: <InputAdornment position="end">%</InputAdornment>,
+                  }}
                 />
               )}
             />
@@ -76,6 +97,12 @@ export const SparkActForm = () => {
                   label="Click Thru Rate"
                   type="number"
                   required
+                  inputProps={{
+                    value: `${field.value.toFixed(2)}`
+                  }}
+                  InputProps={{
+                    endAdornment: <InputAdornment position="end">%</InputAdornment>,
+                  }}
                 />
               )}
             />
@@ -92,6 +119,12 @@ export const SparkActForm = () => {
                   label="CPA"
                   type="number"
                   required
+                  inputProps={{
+                    value: `${field.value.toFixed(2)}`,
+                  }}
+                  InputProps={{
+                    endAdornment: <InputAdornment position="end">%</InputAdornment>,
+                  }}
                 />
               )}
             />
@@ -156,6 +189,12 @@ export const SparkActForm = () => {
                   label="View Through"
                   type="number"
                   required
+                  inputProps={{
+                    value: `${field.value.toFixed(2)}`
+                  }}
+                  InputProps={{
+                    endAdornment: <InputAdornment position="end">%</InputAdornment>,
+                  }}
                 />
               )}
             />
