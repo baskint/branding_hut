@@ -16,6 +16,7 @@
     "@mui/material": "^5.13.5",
     "@mui/system": "^5.13.5",
     "@mui/x-date-pickers": "^6.8.0",
+    "@types/styled-components": "^5.1.26",
     "date-fns": "^2.30.0",
     "dayjs": "^1.11.8",
     "gql-query-builder": "^3.8.0",
