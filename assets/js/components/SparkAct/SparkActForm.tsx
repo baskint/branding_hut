@@ -48,6 +48,134 @@ export const SparkActForm = () => {
               )}
             />
           </ActDateTime>
+          <Grid item xs={12} sm={3}>
+            <Controller
+              name="bounceRate"
+              control={control}
+              defaultValue={0}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  label="Bounce Rate"
+                  type="number"
+                  required
+                />
+              )}
+            />
+          </Grid>
+          <Grid item xs={12} sm={3}>
+            <Controller
+              name="clickThruRate"
+              control={control}
+              defaultValue={0}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  label="Click Thru Rate"
+                  type="number"
+                  required
+                />
+              )}
+            />
+          </Grid>
+          <Grid item xs={12} sm={3}>
+            <Controller
+              name="cpa"
+              control={control}
+              defaultValue={0}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  label="CPA"
+                  type="number"
+                  required
+                />
+              )}
+            />
+          </Grid>
+          <Grid item xs={12} sm={3}>
+            <Controller
+              name="jottings"
+              control={control}
+              defaultValue={0}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  label="Jottings"
+                  type="number"
+                  required
+                />
+              )}
+            />
+          </Grid>
+          <Grid item xs={12} sm={3}>
+            <Controller
+              name="messages"
+              control={control}
+              defaultValue={0}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  label="Messages"
+                  type="number"
+                  required
+                />
+              )}
+            />
+          </Grid>
+          <Grid item xs={12} sm={3}>
+            <Controller
+              name="palavers"
+              control={control}
+              defaultValue={0}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  label="Palavers"
+                  type="number"
+                  required
+                />
+              )}
+            />
+          </Grid>
+          <Grid item xs={12} sm={3}>
+            <Controller
+              name="viewThrough"
+              control={control}
+              defaultValue={0}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  label="View Through"
+                  type="number"
+                  required
+                />
+              )}
+            />
+          </Grid>
+          <Grid item xs={12} sm={3}>
+            <Controller
+              name="yells"
+              control={control}
+              defaultValue={0}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  label="Yells"
+                  type="number"
+                  required
+                />
+              )}
+            />
+          </Grid>
         </Grid>
       </Box>
     </form>
