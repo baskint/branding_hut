@@ -6,10 +6,10 @@ import { createSparkAct } from '../../components/SparkAct/createSparkAct';
 import { SparkActsTable } from './SparkActsTable';
 import { SparkActForm } from '../../components/SparkAct/SparkActForm';
 import { SparkActItem } from '../../api-types/sparkAct';
+import deleteSparkAct from '../../components/SparkAct/deleteSparkAct';
 
 export const SparkActsWithData = () => {
-  const [reloadData, setReloadData] = useState(false)
-  const { data, isLoading, error } = useSparkActs(reloadData);
+  const { data, isLoading, error, reload } = useSparkActs();
   const [showForm, setShowForm] = useState(false);
   const resp = data as SparkActListResponse;
 
@@ -18,9 +18,19 @@ export const SparkActsWithData = () => {
   }, [showForm]);
 
   const handleFormSave = useCallback(async (formData: SparkActItem) => {
-    console.log('reloading data');
     const resp = await createSparkAct(formData);
-  }, [setReloadData]);
+    if (resp) {
+      setShowForm(!showForm);
+      reload();
+    }
+  }, [reload, showForm]);
+
+  const onDelete = useCallback(async (id: number) => {
+    const resp = await deleteSparkAct(id);
+    if (resp) {
+      reload();
+    }
+  }, [reload]);
 
   return resp ? (
    <Box sx={{ mt: 10 }}>
@@ -38,7 +48,8 @@ export const SparkActsWithData = () => {
     <SparkActsTable
       rows={resp.sparkActs}
       isLoading={isLoading}
-      reloadData={reloadData}
+      onDelete={onDelete}
+      onEdit={() => Promise.resolve(false)}
     />
    </Box>
   ) : (

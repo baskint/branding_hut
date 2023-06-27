@@ -1,6 +1,6 @@
 // import useSWR from 'swr';
 import { GraphQLClient } from 'graphql-request';
-import { format } from 'date-fns';
+// import { format } from 'date-fns';
 
 const API_ENDPOINT = '/api/graphql';
 
@@ -45,7 +45,7 @@ export const createSparkAct = async (formData: any) => {
   `;
 
   const data = await graphQLClient.request(mutation, formData);
-  console.log(JSON.stringify(data, undefined, 2));
+  // console.log(JSON.stringify(data, undefined, 2));
 
   return {
     data,

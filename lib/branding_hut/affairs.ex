@@ -110,6 +110,6 @@ defmodule BrandingHut.Affairs do
   def create_post(attrs \\ %{}) do
     %Post{}
     |> Post.changeset(attrs)
-    |> Repo.insert
+    |> Repo.insert()
   end
 end

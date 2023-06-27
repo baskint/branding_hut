@@ -13,5 +13,6 @@ export interface SparkActProps {
 export interface SparkActsTableProps {
   rows: SparkActItem[];
   isLoading: boolean;
-  reloadData: boolean;
+  onDelete: (id: number) =>  void,
+  onEdit: (id: number) => void
 }
