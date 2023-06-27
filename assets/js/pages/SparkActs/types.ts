@@ -13,4 +13,5 @@ export interface SparkActProps {
 export interface SparkActsTableProps {
   rows: SparkActItem[];
   isLoading: boolean;
+  reloadData: boolean;
 }

@@ -2,11 +2,14 @@ import React, { useCallback, useState } from 'react';
 import { Box, Button } from '@mui/material';
 import { useSparkActs } from './useSparkActs';
 import { SparkActListResponse } from './types';
+import { createSparkAct } from '../../components/SparkAct/createSparkAct';
 import { SparkActsTable } from './SparkActsTable';
 import { SparkActForm } from '../../components/SparkAct/SparkActForm';
+import { SparkActItem } from '../../api-types/sparkAct';
 
 export const SparkActsWithData = () => {
-  const { data, isLoading, error } = useSparkActs();
+  const [reloadData, setReloadData] = useState(false)
+  const { data, isLoading, error } = useSparkActs(reloadData);
   const [showForm, setShowForm] = useState(false);
   const resp = data as SparkActListResponse;
 
@@ -14,6 +17,10 @@ export const SparkActsWithData = () => {
     setShowForm(!showForm);
   }, [showForm]);
 
+  const handleFormSave = useCallback(async (formData: SparkActItem) => {
+    console.log('reloading data');
+    const resp = await createSparkAct(formData);
+  }, [setReloadData]);
 
   return resp ? (
    <Box sx={{ mt: 10 }}>
@@ -26,15 +33,15 @@ export const SparkActsWithData = () => {
         borderRadius: 0, // Add border radius if desired
       }}
     >
-      {showForm && <SparkActForm />}
+      {showForm && <SparkActForm onSave={handleFormSave} />}
     </Box>
     <SparkActsTable
       rows={resp.sparkActs}
       isLoading={isLoading}
+      reloadData={reloadData}
     />
    </Box>
   ) : (
    <span>Loading... </span>
   );
 }
-

@@ -10,7 +10,7 @@ import { format } from 'date-fns';
 
 import { SparkActsTableProps } from './types';
 
-export const SparkActsTable = ({ rows, isLoading }: SparkActsTableProps) => (
+export const SparkActsTable = ({ rows, isLoading, reloadData}: SparkActsTableProps) => (
   <TableContainer component={Paper}>
     <Table sx={{ minWidth: 650 }} aria-label='simple table'>
       <TableHead>
@@ -27,7 +27,12 @@ export const SparkActsTable = ({ rows, isLoading }: SparkActsTableProps) => (
         </TableRow>
       </TableHead>
       <TableBody>
-        {rows.map((row, idx) => (
+      {isLoading ? (
+          <TableRow>
+            <TableCell colSpan={9} align="center">Loading...</TableCell>
+          </TableRow>
+        ) : (
+        rows.map((row, idx) => (
           <TableRow
             key={`${row.actDateTime}-${idx}`}
             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -44,7 +49,7 @@ export const SparkActsTable = ({ rows, isLoading }: SparkActsTableProps) => (
             <TableCell align='right'>{Number(row.viewThrough).toFixed(2)}</TableCell>
             <TableCell align='right'>{row.yells}</TableCell>
           </TableRow>
-        ))}
+        )))}
       </TableBody>
     </Table>
   </TableContainer>

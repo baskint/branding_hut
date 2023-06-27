@@ -1,17 +1,27 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { format } from 'date-fns';
-import { Grid, Box, TextField, Button, InputAdornment } from '@mui/material';
+import {
+  Grid,
+  Box,
+  TextField,
+  Button,
+  Snackbar,
+  InputAdornment,
+} from '@mui/material';
 import dayjs, { Dayjs } from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 
-import { createSparkAct } from './createSparkAct';
 import { SparkActItem } from '../../api-types/sparkAct';
 import { ActDateTime } from './styles';
 
-export const SparkActForm = () => {
+interface SparkActFormProps {
+  onSave: (formData: SparkActItem) => void;
+}
+
+export const SparkActForm = ({ onSave }: SparkActFormProps) => {
   const {
     register,
     control,
@@ -24,10 +34,16 @@ export const SparkActForm = () => {
     },
   });
 
+  const [showSnackbar, setShowSnackbar] = useState(false);
+
   const onSubmit = useCallback(async (data: SparkActItem) => {
-    const resp = await createSparkAct(data);
-    console.log('response: ', resp);
-  }, []);
+    setShowSnackbar(true);
+    onSave(data);
+  }, [onSave]);
+
+  const handleCloseSnackbar = () => {
+    setShowSnackbar(false);
+  };
 
   const handleFormSubmit = handleSubmit((data) => {
     onSubmit(data);
@@ -222,6 +238,16 @@ export const SparkActForm = () => {
             Save
           </Button>
         </Box>
+        <Snackbar
+          open={showSnackbar}
+          autoHideDuration={3000}
+          onClose={handleCloseSnackbar}
+          message="A spark act is saved - nice work!"
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+        />
       </Box>
     </form>
   );

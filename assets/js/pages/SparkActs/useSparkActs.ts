@@ -3,7 +3,7 @@ import { request } from 'graphql-request';
 
 const API_ENDPOINT = '/api/graphql';
 
-export const useSparkActs = () => {
+export const useSparkActs = (reload: boolean) => {
   const saQuery = `
   {
     sparkActs {
@@ -21,7 +21,8 @@ export const useSparkActs = () => {
   }
   `;
 
-  const { data, error, isLoading } = useSWR(saQuery, (query: string) =>
+  const { data, error, isLoading } = useSWR(
+    reload ? [saQuery, reload]: saQuery, (query: string) =>
     request(API_ENDPOINT, query)
   );
 
