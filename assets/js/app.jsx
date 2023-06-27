@@ -34,7 +34,7 @@ import { HutAppBar } from './components/HutAppBar'
 import { SparkActsWithData } from './pages/SparkActs';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
-import { red } from '@mui/material/colors';
+import { red, green } from '@mui/material/colors';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
@@ -42,6 +42,9 @@ const theme = createTheme({
     primary: {
       main: red[900],
     },
+    secondary: {
+      main: green[900]
+    }
   },
 });
 

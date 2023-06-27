@@ -35,13 +35,13 @@ export const SparkActsTable = ({ rows, isLoading }: SparkActsTableProps) => (
             <TableCell component='th' scope='row'>
               {format(Date.parse(row.actDateTime), 'M/d/yyyy hh:mma')}
             </TableCell>
-            <TableCell align='right'>{row.bounceRate}</TableCell>
-            <TableCell align='right'>{row.clickThruRate}</TableCell>
-            <TableCell align='right'>{row.cpa}</TableCell>
+            <TableCell align='right'>{Number(row.bounceRate).toFixed(2)}</TableCell>
+            <TableCell align='right'>{Number(row.clickThruRate).toFixed(2)}</TableCell>
+            <TableCell align='right'>{Number(row.cpa).toFixed(2)}</TableCell>
             <TableCell align='right'>{row.jottings}</TableCell>
             <TableCell align='right'>{row.messages}</TableCell>
             <TableCell align='right'>{row.palavers}</TableCell>
-            <TableCell align='right'>{row.viewThrough}</TableCell>
+            <TableCell align='right'>{Number(row.viewThrough).toFixed(2)}</TableCell>
             <TableCell align='right'>{row.yells}</TableCell>
           </TableRow>
         ))}
