@@ -7,6 +7,7 @@ import { SparkActsTable } from './SparkActsTable';
 import { SparkActForm } from '../../components/SparkAct/SparkActForm';
 import { SparkActItem } from '../../api-types/sparkAct';
 import deleteSparkAct from '../../components/SparkAct/deleteSparkAct';
+import { updateSparkAct } from '../../components/SparkAct/updateSparkAct';
 
 export const SparkActsWithData = () => {
   const { data, isLoading, error, reload } = useSparkActs();
@@ -36,6 +37,15 @@ export const SparkActsWithData = () => {
     }
   }, [reload]);
 
+  const onEdit = useCallback(async (id: number, attrs: SparkActItem) => {
+    // setShowSnackbar(true);
+    const resp = await updateSparkAct(id, attrs);
+    if (resp) {
+      reload();
+      return resp;
+    }
+  }, [reload]);
+
   const handleCloseSnackbar = () => {
     setShowSnackbar(false);
   };
@@ -57,7 +67,7 @@ export const SparkActsWithData = () => {
       rows={resp.sparkActs}
       isLoading={isLoading}
       onDelete={onDelete}
-      onEdit={() => Promise.resolve(false)}
+      onEdit={onEdit}
     />
       <Snackbar
         open={showSnackbar}

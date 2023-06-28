@@ -7,6 +7,7 @@ const API_ENDPOINT = '/api/graphql';
 export const updateSparkAct = async (
   id: number,
   attrs: {
+    id?: number | null,
     actDateTime?: string;
     bounceRate?: number | null;
     clickThruRate?: number | null;
@@ -18,6 +19,13 @@ export const updateSparkAct = async (
     yells?: number | null;
   }
 ) => {
+
+  console.log('attrs??:', attrs);
+  if (attrs.id) {
+    delete attrs.id;
+  }
+  attrs.palavers = 101;
+
   const graphQLClient = new GraphQLClient(API_ENDPOINT);
   const mutation = `
     mutation UpdateSparkAct(

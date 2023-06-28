@@ -21,6 +21,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 import { SparkActsTableProps } from './types';
+import { SparkActItem } from '../../api-types/sparkAct';
 
 export const SparkActsTable = ({
   rows,
@@ -30,12 +31,10 @@ export const SparkActsTable = ({
 }: SparkActsTableProps) => {
   const [rowToDelete, setRowToDelete] = useState(0);
 
-  const onRowEdit = useCallback(
-    async (id: number) => {
-      console.log('editing: ', id);
-    },
-    [onEdit]
-  );
+  const onRowEdit = async (id: number, attrs: SparkActItem) => {
+    const resp = await onEdit(id, attrs);
+    console.log('resp:', resp);
+  };
 
   const onRowDelete = async () => {
     const resp = await onDelete(rowToDelete);
@@ -115,7 +114,7 @@ export const SparkActsTable = ({
                   </TableCell>
                   <TableCell align='right'>{row.yells}</TableCell>
                   <TableCell align='right'>
-                    <IconButton onClick={() => onEdit(row.id)}>
+                    <IconButton onClick={() => onRowEdit(row.id, row)}>
                       <EditIcon />
                     </IconButton>
                     <IconButton onClick={() => onDeleteClick(row.id)}>
