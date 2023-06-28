@@ -30,23 +30,6 @@ defmodule BrandingHutWeb.Resolvers.Affairs do
   #   end
   # end
 
-  # Resolver for the update_spark_act endpoint
-  def update_spark_act(_, %{id: id, attrs: attrs}) do
-    case Affairs.get_spark_act!(id) do
-      spark_act ->
-        case Affairs.update_spark_act(spark_act, attrs) do
-          {:ok, updated_spark_act} ->
-            {:ok, updated_spark_act}
-
-          {:error, changeset} ->
-            {:error, changeset}
-        end
-
-      _ ->
-        {:error, "SparkAct not found"}
-    end
-  end
-
   def delete_spark_act(%{id: id}, _info) do
     IO.puts id
     case Affairs.get_spark_act!(id) do
@@ -56,9 +39,22 @@ defmodule BrandingHutWeb.Resolvers.Affairs do
     {:ok, true}
   end
 
-  defp maybe_delete_sa(sa) do
-    Affairs.delete_spark_act sa
-    true
+  def update_spark_act(%{id: id, attrs: attrs}, _info) do
+    IO.puts "Attributes"
+    IO.inspect attrs
+    case Affairs.get_spark_act!(id) do
+      nil ->
+        {:error, "SparkAct not found"}
+
+      spark_act ->
+        case Affairs.update_spark_act(spark_act, attrs) do
+          {:ok, updated_spark_act} ->
+            {:ok, updated_spark_act}
+
+          {:error, changeset} ->
+            {:error, changeset}
+        end
+    end
   end
 
   def list_posts(_parent, _args, _resolution) do
@@ -68,4 +64,10 @@ defmodule BrandingHutWeb.Resolvers.Affairs do
   def create_post(_, args, _) do
     Affairs.create_post(args)
   end
+
+  defp maybe_delete_sa(sa) do
+    Affairs.delete_spark_act sa
+    true
+  end
+
 end
