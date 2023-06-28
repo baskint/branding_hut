@@ -19,26 +19,28 @@ import { ActDateTime } from './styles';
 
 interface SparkActFormProps {
   onSave: (formData: SparkActItem) => void;
+  onUpdate: (id: number, formData: SparkActItem) => void;
+  formData: SparkActItem | undefined;
 }
 
-export const SparkActForm = ({ onSave }: SparkActFormProps) => {
+export const SparkActForm = ({ onSave, onUpdate, formData }: SparkActFormProps) => {
   const {
     register,
     control,
     formState: { isDirty, isValid },
     handleSubmit,
     reset,
-  } = useForm<SparkActItem>({
-    defaultValues: {
-      actDateTime: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
-    },
-  });
+  } = useForm<SparkActItem>({});
 
   const [showSnackbar, setShowSnackbar] = useState(false);
 
   const onSubmit = useCallback(async (data: SparkActItem) => {
     setShowSnackbar(true);
-    onSave(data);
+    if (formData) {
+      onUpdate(formData.id, data);
+    } else {
+      onSave(data);
+    }
   }, [onSave]);
 
   const handleCloseSnackbar = () => {
@@ -54,6 +56,7 @@ export const SparkActForm = ({ onSave }: SparkActFormProps) => {
   useEffect(() => {
     // Generate random numbers
     const randomValues = {
+      actDateTime: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
       bounceRate: Math.random() * 10,
       clickThruRate: Math.random() * 10,
       cpa: Math.random(),
@@ -65,8 +68,14 @@ export const SparkActForm = ({ onSave }: SparkActFormProps) => {
     };
 
     // Set the random values as default values
-    reset(randomValues);
-  }, []);
+    if (formData) {
+      console.log('what is form data', formData);
+      setValue(dayjs(formData?.actDateTime));
+      reset(formData) // don't reset
+    } else {
+      reset(randomValues);
+    }
+  }, [formData]);
 
   return (
     <form autoComplete='off' onSubmit={handleFormSubmit}>

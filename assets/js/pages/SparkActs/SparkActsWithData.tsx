@@ -13,6 +13,7 @@ export const SparkActsWithData = () => {
   const { data, isLoading, error, reload } = useSparkActs();
   const [showForm, setShowForm] = useState(false);
   const [showSnackbar, setShowSnackbar] = useState(false);
+  const [updateData, setUpdateData] = useState({});
 
   const resp = data as SparkActListResponse;
 
@@ -28,6 +29,14 @@ export const SparkActsWithData = () => {
     }
   }, [reload, showForm]);
 
+  const handleFormUpdate = useCallback(async (id: number, formData: SparkActItem) => {
+    const resp = await updateSparkAct(id, formData);
+    if (resp) {
+      setShowForm(!showForm);
+      reload();
+    }
+  }, [reload, showForm]);
+
   const onDelete = useCallback(async (id: number) => {
     setShowSnackbar(true);
     const resp = await deleteSparkAct(id);
@@ -37,14 +46,17 @@ export const SparkActsWithData = () => {
     }
   }, [reload]);
 
+  // TODO set the form with the data
   const onEdit = useCallback(async (id: number, attrs: SparkActItem) => {
+    setUpdateData(attrs);
+    setShowForm(!showForm);
     // setShowSnackbar(true);
-    const resp = await updateSparkAct(id, attrs);
-    if (resp) {
-      reload();
-      return resp;
-    }
-  }, [reload]);
+    // const resp = await updateSparkAct(id, attrs);
+    // if (resp) {
+    //   reload();
+    //   return resp;
+    // }
+  }, []);
 
   const handleCloseSnackbar = () => {
     setShowSnackbar(false);
@@ -61,7 +73,13 @@ export const SparkActsWithData = () => {
         borderRadius: 0, // Add border radius if desired
       }}
     >
-      {showForm && <SparkActForm onSave={handleFormSave} />}
+      {showForm && (
+        <SparkActForm
+          onSave={handleFormSave}
+          onUpdate={handleFormUpdate}
+          formData={updateData || {}}
+        />
+      )}
     </Box>
     <SparkActsTable
       rows={resp.sparkActs}
@@ -69,16 +87,16 @@ export const SparkActsWithData = () => {
       onDelete={onDelete}
       onEdit={onEdit}
     />
-      <Snackbar
-        open={showSnackbar}
-        autoHideDuration={3000}
-        onClose={handleCloseSnackbar}
-        message="A spark act is deleted 😭"
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-      />
+    <Snackbar
+      open={showSnackbar}
+      autoHideDuration={3000}
+      onClose={handleCloseSnackbar}
+      message="A spark act is deleted 😭"
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+    />
    </Box>
   ) : (
    <span>Loading... </span>
