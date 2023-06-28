@@ -61,7 +61,7 @@ export const SparkActForm = ({ onSave }: SparkActFormProps) => {
       messages: Math.floor(Math.random() * 10) + 1,
       palavers: Math.floor(Math.random() * 10) + 1,
       viewThrough: Math.random() * 10,
-      yells: Math.floor(Math.random() * 10) + 1,
+      yells: Math.floor(Math.random() * 1000) + 1,
     };
 
     // Set the random values as default values
@@ -72,7 +72,7 @@ export const SparkActForm = ({ onSave }: SparkActFormProps) => {
     <form autoComplete='off' onSubmit={handleFormSubmit}>
       <Box sx={{ minWidth: '500px' }}>
         <Grid container spacing={1}>
-          <ActDateTime item xs={12}>
+          <ActDateTime item xs={12} sm={3}>
             <Controller
               name='actDateTime'
               control={control}
@@ -81,6 +81,7 @@ export const SparkActForm = ({ onSave }: SparkActFormProps) => {
                   <DateTimePicker
                     label='Act Date Time'
                     value={value}
+                    sx={{ width: '100%' }}
                     onChange={(newValue) => setValue(newValue)}
                   />
                 </LocalizationProvider>
@@ -98,9 +99,11 @@ export const SparkActForm = ({ onSave }: SparkActFormProps) => {
                   {...field}
                   label='Bounce Rate'
                   type='number'
+                  fullWidth
                   required
                   inputProps={{
-                    value: `${field.value.toFixed(2)}`,
+                    value: `${Number(field.value).toFixed(2)}`,
+                    style: { textAlign: 'right'}
                   }}
                   InputProps={{
                     endAdornment: (
@@ -123,8 +126,10 @@ export const SparkActForm = ({ onSave }: SparkActFormProps) => {
                   label='Click Thru Rate'
                   type='number'
                   required
+                  fullWidth
                   inputProps={{
-                    value: `${field.value.toFixed(2)}`,
+                    value: `${Number(field.value).toFixed(2)}`,
+                    style: { textAlign: 'right' }
                   }}
                   InputProps={{
                     endAdornment: (
@@ -147,8 +152,10 @@ export const SparkActForm = ({ onSave }: SparkActFormProps) => {
                   label='CPA'
                   type='number'
                   required
+                  fullWidth
                   inputProps={{
-                    value: `${field.value.toFixed(2)}`,
+                    value: `${Number(field.value).toFixed(2)}`,
+                    style: { textAlign: 'right' }
                   }}
                   InputProps={{
                     endAdornment: (
@@ -166,7 +173,17 @@ export const SparkActForm = ({ onSave }: SparkActFormProps) => {
               defaultValue={0}
               rules={{ required: true }}
               render={({ field }) => (
-                <TextField {...field} label='Jottings' type='number' required />
+                <TextField
+                  {...field}
+                  label='Jottings'
+                  type='number'
+                  required
+                  fullWidth
+                  onChange={(e) => field.onChange(Number(e.target.value))}
+                  inputProps={{
+                    style: { textAlign: 'right' }
+                  }}
+                />
               )}
             />
           </Grid>
@@ -177,7 +194,17 @@ export const SparkActForm = ({ onSave }: SparkActFormProps) => {
               defaultValue={0}
               rules={{ required: true }}
               render={({ field }) => (
-                <TextField {...field} label='Messages' type='number' required />
+                <TextField
+                  {...field}
+                  label='Messages'
+                  type='number'
+                  required
+                  fullWidth
+                  onChange={(e) => field.onChange(Number(e.target.value))}
+                  inputProps={{
+                    style: { textAlign: 'right' }
+                  }}
+                />
               )}
             />
           </Grid>
@@ -188,7 +215,17 @@ export const SparkActForm = ({ onSave }: SparkActFormProps) => {
               defaultValue={0}
               rules={{ required: true }}
               render={({ field }) => (
-                <TextField {...field} label='Palavers' type='number' required />
+                <TextField
+                  {...field}
+                  label='Palavers'
+                  type='number'
+                  required
+                  fullWidth
+                  onChange={(e) => field.onChange(Number(e.target.value))}
+                  inputProps={{
+                    style: { textAlign: 'right' }
+                  }}
+                />
               )}
             />
           </Grid>
@@ -204,8 +241,10 @@ export const SparkActForm = ({ onSave }: SparkActFormProps) => {
                   label='View Through'
                   type='number'
                   required
+                  fullWidth
                   inputProps={{
-                    value: `${field.value.toFixed(2)}`,
+                    value: `${Number(field.value).toFixed(2)}`,
+                    style: { textAlign: 'right' }
                   }}
                   InputProps={{
                     endAdornment: (
@@ -223,7 +262,18 @@ export const SparkActForm = ({ onSave }: SparkActFormProps) => {
               defaultValue={0}
               rules={{ required: true }}
               render={({ field }) => (
-                <TextField {...field} label='Yells' type='number' required />
+                <TextField
+                  {...field}
+                  label='Yells'
+                  type='number'
+                  required
+                  fullWidth
+                  sx={{ textAlign: 'right' }}
+                  onChange={(e) => field.onChange(Number(e.target.value))}
+                  inputProps={{
+                    style: { textAlign: 'right' }
+                  }}
+                />
               )}
             />
           </Grid>
