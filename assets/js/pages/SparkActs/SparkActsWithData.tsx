@@ -29,6 +29,7 @@ export const SparkActsWithData = () => {
     const resp = await deleteSparkAct(id);
     if (resp) {
       reload();
+      return resp;
     }
   }, [reload]);
 
