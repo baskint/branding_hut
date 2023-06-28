@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Snackbar } from '@mui/material';
 import { useSparkActs } from './useSparkActs';
 import { SparkActListResponse } from './types';
 import { createSparkAct } from '../../components/SparkAct/createSparkAct';
@@ -11,6 +11,8 @@ import deleteSparkAct from '../../components/SparkAct/deleteSparkAct';
 export const SparkActsWithData = () => {
   const { data, isLoading, error, reload } = useSparkActs();
   const [showForm, setShowForm] = useState(false);
+  const [showSnackbar, setShowSnackbar] = useState(false);
+
   const resp = data as SparkActListResponse;
 
   const onNew = useCallback(() => {
@@ -26,12 +28,17 @@ export const SparkActsWithData = () => {
   }, [reload, showForm]);
 
   const onDelete = useCallback(async (id: number) => {
+    setShowSnackbar(true);
     const resp = await deleteSparkAct(id);
     if (resp) {
       reload();
       return resp;
     }
   }, [reload]);
+
+  const handleCloseSnackbar = () => {
+    setShowSnackbar(false);
+  };
 
   return resp ? (
    <Box sx={{ mt: 10 }}>
@@ -52,6 +59,16 @@ export const SparkActsWithData = () => {
       onDelete={onDelete}
       onEdit={() => Promise.resolve(false)}
     />
+      <Snackbar
+        open={showSnackbar}
+        autoHideDuration={3000}
+        onClose={handleCloseSnackbar}
+        message="A spark act is deleted 😭"
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+      />
    </Box>
   ) : (
    <span>Loading... </span>
