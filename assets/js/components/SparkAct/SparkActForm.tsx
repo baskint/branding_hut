@@ -13,6 +13,7 @@ import dayjs, { Dayjs } from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { isEmpty } from 'lodash';
 
 import { SparkActItem } from '../../api-types/sparkAct';
 import { ActDateTime } from './styles';
@@ -20,7 +21,7 @@ import { ActDateTime } from './styles';
 interface SparkActFormProps {
   onSave: (formData: SparkActItem) => void;
   onUpdate: (id: number, formData: SparkActItem) => void;
-  formData: SparkActItem | undefined;
+  formData: SparkActItem | {};
 }
 
 export const SparkActForm = ({ onSave, onUpdate, formData }: SparkActFormProps) => {
@@ -32,20 +33,13 @@ export const SparkActForm = ({ onSave, onUpdate, formData }: SparkActFormProps) 
     reset,
   } = useForm<SparkActItem>({});
 
-  const [showSnackbar, setShowSnackbar] = useState(false);
-
   const onSubmit = useCallback(async (data: SparkActItem) => {
-    setShowSnackbar(true);
-    if (formData) {
-      onUpdate(formData.id, data);
-    } else {
+    if (isEmpty(formData)) {
       onSave(data);
+    } else {
+      onUpdate(formData.id, data);
     }
   }, [onSave]);
-
-  const handleCloseSnackbar = () => {
-    setShowSnackbar(false);
-  };
 
   const handleFormSubmit = handleSubmit((data) => {
     onSubmit(data);
@@ -67,13 +61,14 @@ export const SparkActForm = ({ onSave, onUpdate, formData }: SparkActFormProps) 
       yells: Math.floor(Math.random() * 1000) + 1,
     };
 
+    console.log('formData:', formData);
+
     // Set the random values as default values
-    if (formData) {
-      console.log('what is form data', formData);
+    if (isEmpty(formData)) {
+      reset(randomValues);
+    } else {
       setValue(dayjs(formData?.actDateTime));
       reset(formData) // don't reset
-    } else {
-      reset(randomValues);
     }
   }, [formData]);
 
@@ -297,16 +292,6 @@ export const SparkActForm = ({ onSave, onUpdate, formData }: SparkActFormProps) 
             Save
           </Button>
         </Box>
-        <Snackbar
-          open={showSnackbar}
-          autoHideDuration={3000}
-          onClose={handleCloseSnackbar}
-          message="A spark act is saved - nice work!"
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-        />
       </Box>
     </form>
   );

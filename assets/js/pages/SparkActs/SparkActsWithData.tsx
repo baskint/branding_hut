@@ -12,7 +12,7 @@ import { updateSparkAct } from '../../components/SparkAct/updateSparkAct';
 export const SparkActsWithData = () => {
   const { data, isLoading, error, reload } = useSparkActs();
   const [showForm, setShowForm] = useState(false);
-  const [showSnackbar, setShowSnackbar] = useState(false);
+  const [messages, setMessages] = useState<String[]>([]);
   const [updateData, setUpdateData] = useState({});
 
   const resp = data as SparkActListResponse;
@@ -22,6 +22,7 @@ export const SparkActsWithData = () => {
   }, [showForm]);
 
   const handleFormSave = useCallback(async (formData: SparkActItem) => {
+    setMessages([...messages, 'A spark act is saved 😍']);
     const resp = await createSparkAct(formData);
     if (resp) {
       setShowForm(!showForm);
@@ -30,6 +31,7 @@ export const SparkActsWithData = () => {
   }, [reload, showForm]);
 
   const handleFormUpdate = useCallback(async (id: number, formData: SparkActItem) => {
+    setMessages([...messages, 'A spark act is updated 😊']);
     const resp = await updateSparkAct(id, formData);
     if (resp) {
       setShowForm(!showForm);
@@ -38,7 +40,7 @@ export const SparkActsWithData = () => {
   }, [reload, showForm]);
 
   const onDelete = useCallback(async (id: number) => {
-    setShowSnackbar(true);
+    setMessages([...messages, 'A spark act is deleted 😭']);
     const resp = await deleteSparkAct(id);
     if (resp) {
       reload();
@@ -50,16 +52,10 @@ export const SparkActsWithData = () => {
   const onEdit = useCallback(async (id: number, attrs: SparkActItem) => {
     setUpdateData(attrs);
     setShowForm(!showForm);
-    // setShowSnackbar(true);
-    // const resp = await updateSparkAct(id, attrs);
-    // if (resp) {
-    //   reload();
-    //   return resp;
-    // }
   }, []);
 
   const handleCloseSnackbar = () => {
-    setShowSnackbar(false);
+    setMessages([]);
   };
 
   return resp ? (
@@ -88,10 +84,10 @@ export const SparkActsWithData = () => {
       onEdit={onEdit}
     />
     <Snackbar
-      open={showSnackbar}
+      open={messages.length > 0}
       autoHideDuration={3000}
+      message={messages.length > 0 && messages[0]}
       onClose={handleCloseSnackbar}
-      message="A spark act is deleted 😭"
       anchorOrigin={{
         vertical: 'top',
         horizontal: 'right',

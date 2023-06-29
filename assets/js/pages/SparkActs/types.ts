@@ -14,5 +14,5 @@ export interface SparkActsTableProps {
   rows: SparkActItem[];
   isLoading: boolean;
   onDelete: (id: number) =>  Promise<boolean | undefined>;
-  onEdit: (id: number, attrs: SparkActItem) => Promise<boolean | undefined>;
+  onEdit: (id: number, attrs: SparkActItem) => Promise<void>;
 }
