@@ -40,19 +40,19 @@ defmodule BrandingHut.MixProject do
       {:phoenix_view, "~> 2.0.2"},
       {:phoenix_html, "~> 3.0"},
       {:phoenix_live_reload, "~> 1.4.1", only: :dev},
-      {:phoenix_live_view, "~> 0.18.6"},
+      {:phoenix_live_view, "~> 0.19.0"},
       {:floki, ">= 0.30.0", only: :test},
-      {:phoenix_live_dashboard, "~> 0.7.2"},
-      {:esbuild, "~> 0.4", runtime: Mix.env() == :dev},
+      {:phoenix_live_dashboard, "~> 0.8.0"},
+      {:esbuild, "~> 0.7", runtime: Mix.env() == :dev},
       {:swoosh, "~> 1.3"},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
-      {:gettext, "~> 0.18"},
-      {:jason, "~> 1.2"},
+      {:gettext, "~> 0.22.2"},
+      {:jason, "~> 1.4.0"},
       {:plug_cowboy, "~> 2.5"},
-      {:absinthe, "~> 1.7.1"},
-      {:absinthe_plug, "~> 1.5"},
-      {:tailwind, "~> 0.1", runtime: Mix.env() == :dev}
+      {:absinthe, "~> 1.7.3"},
+      {:absinthe_plug, "~> 1.5.8"},
+      {:tailwind, "~> 0.2.1", runtime: Mix.env() == :dev}
     ]
   end
 
