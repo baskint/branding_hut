@@ -16,6 +16,8 @@ defmodule BrandingHutWeb.Schema do
     Get a list of spark acts
     """
     field :spark_acts, list_of(:spark_act) do
+      arg(:sort_by, :string, description: "Field to sort by")
+      arg(:sort_direction, :string, description: "Sort direction (asc or desc)")
       resolve(&Resolvers.Affairs.list_spark_acts/2)
     end
   end

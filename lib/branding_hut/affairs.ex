@@ -18,8 +18,15 @@ defmodule BrandingHut.Affairs do
       [%SparkAct{}, ...]
 
   """
-  def list_spark_acts do
-    Repo.all(SparkAct)
+  def list_spark_acts(%{sort_by: sort_by, sort_direction: sort_direction}) do
+    order_field = String.to_atom(sort_by)
+    direction = String.to_atom(sort_direction)
+    query =
+      from(sa in SparkAct,
+        order_by: [{^direction, field(sa, ^order_field)}]
+      )
+
+    Repo.all(query)
   end
 
   @doc """

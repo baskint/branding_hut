@@ -1,8 +1,10 @@
 defmodule BrandingHutWeb.Resolvers.Affairs do
   alias BrandingHut.Affairs
 
-  def list_spark_acts(_args, _context) do
-    {:ok, Affairs.list_spark_acts()}
+  def list_spark_acts(%{sort_by: sort_by, sort_direction: sort_direction}, _context) do
+    args = %{sort_by: sort_by, sort_direction: sort_direction}
+
+    {:ok, Affairs.list_spark_acts(args)}
   end
 
   def create_spark_act(_, args, _) do
@@ -20,18 +22,7 @@ defmodule BrandingHutWeb.Resolvers.Affairs do
     end
   end
 
-  # # Resolver for the create_spark_act endpoint
-  # def create_spark_act(_, %{attrs: attrs}) do
-  #   case Affairs.create_spark_act(attrs) do
-  #     {:ok, spark_act} ->
-  #       {:ok, spark_act}
-  #     {:error, changeset} ->
-  #       {:error, changeset}
-  #   end
-  # end
-
   def delete_spark_act(%{id: id}, _info) do
-    IO.puts id
     case Affairs.get_spark_act!(id) do
       nil -> {:ok, false}
       sa -> {:ok, maybe_delete_sa(sa)}
@@ -40,8 +31,6 @@ defmodule BrandingHutWeb.Resolvers.Affairs do
   end
 
   def update_spark_act(%{id: id, attrs: attrs}, _info) do
-    IO.puts "Attributes"
-    IO.inspect attrs
     case Affairs.get_spark_act!(id) do
       nil ->
         {:error, "SparkAct not found"}
@@ -69,5 +58,4 @@ defmodule BrandingHutWeb.Resolvers.Affairs do
     Affairs.delete_spark_act sa
     true
   end
-
 end
