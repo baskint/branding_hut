@@ -18,16 +18,6 @@ defmodule BrandingHutWeb.Schema.Affairs do
     field :yells, :integer
   end
 
-  object :get_spark_acts do
-    @desc """
-    Get a list of spark acts
-    """
-
-    field :spark_acts, list_of(:spark_act) do
-      resolve(&Resolvers.Affairs.list_spark_acts/2)
-    end
-  end
-
   object :post do
     field :id, :id
     field :title, :string

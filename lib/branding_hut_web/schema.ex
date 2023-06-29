@@ -7,15 +7,17 @@ defmodule BrandingHutWeb.Schema do
   import_types(Schema.Affairs)
 
   query do
-    import_fields(:get_spark_acts)
-
     @desc "Get all posts"
     field :posts, list_of(:post) do
       resolve(&Resolvers.Affairs.list_posts/3)
     end
 
-    # @desc "Get a spark act"
-    # field :spark_act, 
+    @desc """
+    Get a list of spark acts
+    """
+    field :spark_acts, list_of(:spark_act) do
+      resolve(&Resolvers.Affairs.list_spark_acts/2)
+    end
   end
 
   # Define the input object type for creating a new `spark_act`
