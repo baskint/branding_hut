@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Table,
   TableBody,
@@ -30,6 +30,7 @@ export const SparkActsTable = ({
   onEdit,
 }: SparkActsTableProps) => {
   const [rowToDelete, setRowToDelete] = useState(0);
+  const [selectedRowIndex, setSelectedRowIndex] = useState(-1);
 
   const onRowEdit = async (id: number, attrs: SparkActItem) => {
     const resp = await onEdit(id, attrs);
@@ -62,7 +63,7 @@ export const SparkActsTable = ({
           </DialogContent>
           <DialogActions>
             <Button onClick={() => setRowToDelete(0)}>Cancel</Button>
-            <Button onClick={onRowDelete}>Delete</Button>
+            <Button variant="contained" onClick={onRowDelete}>Delete</Button>
           </DialogActions>
         </Dialog>
       </Modal>
@@ -93,7 +94,11 @@ export const SparkActsTable = ({
               rows.map((row, idx) => (
                 <TableRow
                   key={`${row.actDateTime}-${idx}`}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 },
+                  backgroundColor: selectedRowIndex === idx ? '#D0F0C0': 'inherit',
+                  cursor: 'pointer'
+                  }}
+                  onClick={() => setSelectedRowIndex(idx)} 
                 >
                   <TableCell component='th' scope='row'>
                     {format(Date.parse(row.actDateTime), 'M/d/yyyy hh:mma')}

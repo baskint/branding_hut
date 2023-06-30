@@ -56,6 +56,11 @@ export const SparkActsWithData = () => {
     setShowForm(!showForm);
   }, []);
 
+  const handleCancel = () => {
+    console.log('cancel in parent');
+    setShowForm(!showForm);
+  };
+
   const handleCloseSnackbar = () => {
     setMessages([]);
   };
@@ -75,6 +80,7 @@ export const SparkActsWithData = () => {
         <SparkActForm
           onSave={handleFormSave}
           onUpdate={handleFormUpdate}
+          onCancel={handleCancel}
           formData={updateData || {}}
         />
       )}
