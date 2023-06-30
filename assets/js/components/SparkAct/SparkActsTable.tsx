@@ -79,6 +79,7 @@ export const SparkActsTable = ({
               <TableCell align='right'>Palavers</TableCell>
               <TableCell align='right'>View Through</TableCell>
               <TableCell align='right'>Yells</TableCell>
+              <TableCell align='right'>Update/Delete</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

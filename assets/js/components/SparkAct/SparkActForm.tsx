@@ -21,7 +21,7 @@ import { ActDateTime } from './styles';
 interface SparkActFormProps {
   onSave: (formData: SparkActItem) => void;
   onUpdate: (id: number, formData: SparkActItem) => void;
-  formData: SparkActItem | {};
+  formData: SparkActItem;
 }
 
 export const SparkActForm = ({ onSave, onUpdate, formData }: SparkActFormProps) => {

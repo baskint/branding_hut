@@ -1,6 +1,4 @@
-// import useSWR from 'swr';
 import { GraphQLClient } from 'graphql-request';
-// import { format } from 'date-fns';
 
 const API_ENDPOINT = '/api/graphql';
 

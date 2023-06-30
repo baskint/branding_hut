@@ -1,13 +1,16 @@
 import React, { useCallback, useState } from 'react';
 import { Box, Button, Snackbar } from '@mui/material';
-import { useSparkActs } from './useSparkActs';
-import { SparkActListResponse } from './types';
-import { createSparkAct } from '../../components/SparkAct/createSparkAct';
-import { SparkActsTable } from './SparkActsTable';
-import { SparkActForm } from '../../components/SparkAct/SparkActForm';
+import {
+  useSparkActs,
+  SparkActListResponse,
+  createSparkAct,
+  SparkActsTable,
+  deleteSparkAct,
+  updateSparkAct,
+  SparkActForm
+} from '../../components/SparkAct';
+
 import { SparkActItem } from '../../api-types/sparkAct';
-import deleteSparkAct from '../../components/SparkAct/deleteSparkAct';
-import { updateSparkAct } from '../../components/SparkAct/updateSparkAct';
 
 export const SparkActsWithData = () => {
   const { data, isLoading, error, reload } = useSparkActs();
@@ -48,7 +51,6 @@ export const SparkActsWithData = () => {
     }
   }, [reload]);
 
-  // TODO set the form with the data
   const onEdit = useCallback(async (id: number, attrs: SparkActItem) => {
     setUpdateData(attrs);
     setShowForm(!showForm);

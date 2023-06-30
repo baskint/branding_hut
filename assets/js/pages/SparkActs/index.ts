@@ -1,2 +1,2 @@
-export * from './SparkActsTable';
+export * from '../../components/SparkAct/SparkActsTable';
 export * from './SparkActsWithData';
