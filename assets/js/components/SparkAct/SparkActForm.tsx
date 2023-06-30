@@ -6,7 +6,6 @@ import {
   Box,
   TextField,
   Button,
-  Snackbar,
   InputAdornment,
 } from '@mui/material';
 import dayjs, { Dayjs } from 'dayjs';
@@ -30,10 +29,12 @@ export const SparkActForm = ({ onSave, onUpdate, formData }: SparkActFormProps) 
     control,
     formState: { isDirty, isValid },
     handleSubmit,
+    getValues,
     reset,
   } = useForm<SparkActItem>({});
 
   const onSubmit = useCallback(async (data: SparkActItem) => {
+    console.log('data: ', data);
     if (isEmpty(formData)) {
       onSave(data);
     } else {
@@ -46,6 +47,7 @@ export const SparkActForm = ({ onSave, onUpdate, formData }: SparkActFormProps) 
   });
 
   const [value, setValue] = useState<Dayjs | null>(dayjs());
+  const [reqDate, setreqDate] = useState<Dayjs | null>(dayjs());
 
   useEffect(() => {
     // Generate random numbers
@@ -72,6 +74,7 @@ export const SparkActForm = ({ onSave, onUpdate, formData }: SparkActFormProps) 
     }
   }, [formData]);
 
+
   return (
     <form autoComplete='off' onSubmit={handleFormSubmit}>
       <Box sx={{ minWidth: '500px' }}>
@@ -84,9 +87,9 @@ export const SparkActForm = ({ onSave, onUpdate, formData }: SparkActFormProps) 
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DateTimePicker
                     label='Act Date Time'
-                    value={value}
+                    value={dayjs(field.value)}
                     sx={{ width: '100%' }}
-                    onChange={(newValue) => setValue(newValue)}
+                    onChange={(newValue) => field.onChange(newValue)}
                   />
                 </LocalizationProvider>
               )}
