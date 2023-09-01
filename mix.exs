@@ -20,8 +20,12 @@ defmodule BrandingHut.MixProject do
   def application do
     [
       mod: {BrandingHut.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: extra_applications(Mix.env())
     ]
+  end
+
+  defp extra_applications(_env) do
+    [:logger, :runtime_tools]
   end
 
   # Specifies which paths to compile per environment.
@@ -33,7 +37,7 @@ defmodule BrandingHut.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.7.6"},
+      {:phoenix, "~> 1.7.7"},
       {:phoenix_ecto, "~> 4.4.2"},
       {:ecto_sql, "~> 3.10.1"},
       {:postgrex, ">= 0.0.0"},
