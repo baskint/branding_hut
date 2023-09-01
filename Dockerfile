@@ -1,20 +1,18 @@
-# Find eligible builder and runner images on Docker Hub. We use Ubuntu/Debian instead of
-# Alpine to avoid DNS resolution issues in production.
+# Find eligible builder and runner images on Docker Hub. We use Ubuntu/Debian
+# instead of Alpine to avoid DNS resolution issues in production.
 #
 # https://hub.docker.com/r/hexpm/elixir/tags?page=1&name=ubuntu
 # https://hub.docker.com/_/ubuntu?tab=tags
 #
-#
 # This file is based on these images:
 #
 #   - https://hub.docker.com/r/hexpm/elixir/tags - for the build image
-#   - https://hub.docker.com/_/debian?tab=tags&page=1&name=bullseye-20230109-slim - for the release image
+#   - https://hub.docker.com/_/debian?tab=tags&page=1&name=bullseye-20230612-slim - for the release image
 #   - https://pkgs.org/ - resource for finding needed packages
-#   - Ex: hexpm/elixir:1.14.3-erlang-25.2.1-debian-bullseye-20230109-slim
-# docker pull hexpm/elixir:1.15.5-erlang-26.0.2-debian-bullseye-20230612-slim
+#   - Ex: hexpm/elixir:1.15.5-erlang-26.0.2-debian-bullseye-20230612-slim
 #
 ARG ELIXIR_VERSION=1.15.5
-ARG OTP_VERSION=26.0.2#
+ARG OTP_VERSION=26.0.2
 ARG DEBIAN_VERSION=bullseye-20230612-slim
 
 ARG BUILDER_IMAGE="hexpm/elixir:${ELIXIR_VERSION}-erlang-${OTP_VERSION}-debian-${DEBIAN_VERSION}"
@@ -26,7 +24,7 @@ FROM ${BUILDER_IMAGE} as builder
 RUN apt-get update -y && apt-get install -y build-essential git curl \
     && apt-get clean && rm -f /var/lib/apt/lists/*_*
 
-ENV NODE_VERSION=18.16.1
+ENV NODE_VERSION=18.17.1
 # RUN apt-get install -y curl
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 ENV NVM_DIR=/root/.nvm
@@ -36,8 +34,6 @@ RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
 ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
 RUN node --version
 RUN npm --version
-RUN npm install --global yarn
-RUN yarn --version
 
 # prepare build dir
 WORKDIR /app
@@ -106,6 +102,3 @@ COPY --from=builder --chown=nobody:root /app/_build/${MIX_ENV}/rel/branding_hut 
 USER nobody
 
 CMD ["/app/bin/server"]
-# Appended by flyctl
-ENV ECTO_IPV6 true
-ENV ERL_AFLAGS "-proto_dist inet6_tcp"
