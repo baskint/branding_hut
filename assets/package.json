@@ -7,7 +7,7 @@
     "build-storybook": "build-storybook",
     "lint": "tslint -c tslint.json 'js/**/*.ts*'"
   },
-  "author": "",
+  "author": "Baskin Tapkan",
   "license": "ISC",
   "dependencies": {
     "@emotion/react": "^11.11.1",
