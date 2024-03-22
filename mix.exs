@@ -5,7 +5,7 @@ defmodule BrandingHut.MixProject do
     [
       app: :branding_hut,
       version: "0.1.0",
-      elixir: "~> 1.15",
+      elixir: "~> 1.16",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: Mix.compilers(),
       start_permanent: Mix.env() == :prod,
@@ -37,7 +37,7 @@ defmodule BrandingHut.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.7.7"},
+      {:phoenix, "~> 1.7.11"},
       {:phoenix_ecto, "~> 4.4.2"},
       {:ecto_sql, "~> 3.10.1"},
       {:postgrex, ">= 0.0.0"},
