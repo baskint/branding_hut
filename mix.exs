@@ -38,25 +38,26 @@ defmodule BrandingHut.MixProject do
   defp deps do
     [
       {:phoenix, "~> 1.7.11"},
-      {:phoenix_ecto, "~> 4.4.2"},
-      {:ecto_sql, "~> 3.10.1"},
+      {:phoenix_ecto, "~> 4.5.1"},
+      {:ecto_sql, "~> 3.11.1"},
       {:postgrex, ">= 0.0.0"},
-      {:phoenix_view, "~> 2.0.2"},
-      {:phoenix_html, "~> 3.0"},
-      {:phoenix_live_reload, "~> 1.4.1", only: :dev},
-      {:phoenix_live_view, "~> 0.19.0"},
-      {:floki, ">= 0.30.0", only: :test},
-      {:phoenix_live_dashboard, "~> 0.8.0"},
-      {:esbuild, "~> 0.7", runtime: Mix.env() == :dev},
-      {:swoosh, "~> 1.3"},
-      {:telemetry_metrics, "~> 0.6"},
+      {:phoenix_view, "~> 2.0.3"},
+      {:phoenix_html, "~> 4.1.1"},
+      {:phoenix_html_helpers, "~> 1.0"},
+      {:phoenix_live_reload, "~> 1.5.2", only: :dev},
+      {:phoenix_live_view, "~> 0.20.14"},
+      {:floki, ">= 0.36.1", only: :test},
+      {:phoenix_live_dashboard, "~> 0.8.3"},
+      {:esbuild, "~> 0.8.1", runtime: Mix.env() == :dev},
+      {:swoosh, "~> 1.16.3"},
+      {:telemetry_metrics, "~> 1.0.0"},
       {:telemetry_poller, "~> 1.0"},
-      {:gettext, "~> 0.22.2"},
-      {:jason, "~> 1.4.0"},
-      {:plug_cowboy, "~> 2.5"},
-      {:absinthe, "~> 1.7.3"},
+      {:gettext, "~> 0.24.0"},
+      {:jason, "~> 1.4.1"},
+      {:plug_cowboy, "~> 2.7"},
+      {:absinthe, "~> 1.7.6"},
       {:absinthe_plug, "~> 1.5.8"},
-      {:tailwind, "~> 0.2.1", runtime: Mix.env() == :dev}
+      {:tailwind, "~> 0.2.2", runtime: Mix.env() == :dev}
     ]
   end
 
