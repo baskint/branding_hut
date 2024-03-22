@@ -2,7 +2,7 @@ defmodule BrandingHutWeb.Schema.Affairs do
   use Absinthe.Schema.Notation
   import_types(Absinthe.Type.Custom)
 
-  alias BrandingHutWeb.Resolvers
+  # alias BrandingHutWeb.Resolvers
 
   @desc "A spark act"
   object :spark_act do
