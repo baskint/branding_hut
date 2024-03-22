@@ -21,8 +21,9 @@ defmodule BrandingHut.AffairsTest do
     }
 
     test "list_spark_acts/0 returns all spark_acts" do
+      args = %{sort_by: "act_date_time", sort_direction: "desc"}
       spark_act = spark_act_fixture()
-      assert Affairs.list_spark_acts() == [spark_act]
+      assert Affairs.list_spark_acts(args) == [spark_act]
     end
 
     test "get_spark_act!/1 returns the spark_act with given id" do
