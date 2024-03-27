@@ -20,11 +20,10 @@ import { ActDateTime } from './styles';
 interface SparkActFormProps {
   onSave: (formData: SparkActItem) => void;
   onUpdate: (id: number, formData: SparkActItem) => void;
-  formData: SparkActItem;
-  onCancel: () => void;
+  formData: SparkActItem ;
 }
 
-export const SparkActForm = ({ onSave, onUpdate, onCancel, formData }: SparkActFormProps) => {
+export const SparkActForm = ({ onSave, onUpdate, formData }: SparkActFormProps) => {
   const {
     register,
     control,
@@ -47,10 +46,8 @@ export const SparkActForm = ({ onSave, onUpdate, onCancel, formData }: SparkActF
     onSubmit(data);
   });
 
-  const handleCancel = useCallback(() => {
-    console.log('cancelling');
-    onCancel();
-  }, [onCancel]);
+  const [value, setValue] = useState<Dayjs | null>(dayjs());
+  const [reqDate, setreqDate] = useState<Dayjs | null>(dayjs());
 
   useEffect(() => {
     // Generate random numbers
@@ -66,10 +63,13 @@ export const SparkActForm = ({ onSave, onUpdate, onCancel, formData }: SparkActF
       yells: Math.floor(Math.random() * 1000) + 1,
     };
 
+    console.log('formData:', formData);
+
     // Set the random values as default values
     if (isEmpty(formData)) {
       reset(randomValues);
     } else {
+      setValue(dayjs(formData?.actDateTime));
       reset(formData) // don't reset
     }
   }, [formData]);
@@ -291,9 +291,6 @@ export const SparkActForm = ({ onSave, onUpdate, onCancel, formData }: SparkActF
           justifyContent='center'
           sx={{ mt: 2 }}
         >
-          <Button variant='text' onClick={handleCancel} sx={{ mr: 2 }}>
-            Cancel
-          </Button>
           <Button variant='contained' type='submit'>
             Save
           </Button>
