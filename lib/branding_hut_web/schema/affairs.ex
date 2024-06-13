@@ -23,4 +23,13 @@ defmodule BrandingHutWeb.Schema.Affairs do
     field :title, :string
     field :body, :string
   end
+
+  object :csv_result do
+    field :data, list_of(list_of(:string))
+  end
+
+  scalar :upload, description: "A file upload" do
+    parse &Absinthe.Plug.Types.File.parse/1
+    serialize &(&1.filename)
+  end
 end

@@ -57,7 +57,8 @@ defmodule BrandingHut.MixProject do
       {:plug_cowboy, "~> 2.7"},
       {:absinthe, "~> 1.7.6"},
       {:absinthe_plug, "~> 1.5.8"},
-      {:tailwind, "~> 0.2.2", runtime: Mix.env() == :dev}
+      {:tailwind, "~> 0.2.2", runtime: Mix.env() == :dev},
+      {:nimble_csv, "~> 1.2"}
     ]
   end
 

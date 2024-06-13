@@ -11,22 +11,30 @@ defmodule BrandingHutWeb.Router do
   end
 
   pipeline :graphql do
-    # Will be used later
+    plug :accepts, ["json"]
+  end
+
+  pipeline :api do
+    plug :accepts, ["json"]
+    # Add other plugs needed for your API
+  end
+
+  scope "/api", BrandingHutWeb do
+    pipe_through :api
+
+    post "/upload_csv", CSVUploadController, :upload
   end
 
   scope "/api" do
     pipe_through :graphql
 
+    # Merge schemas directly using Absinthe functions
     forward "/", Absinthe.Plug, schema: BrandingHutWeb.Schema
   end
 
   if Mix.env() == :dev do
     forward "/graphiql", Absinthe.Plug.GraphiQL, schema: BrandingHutWeb.Schema
   end
-
-  # pipeline :api do
-  #   plug :accepts, ["json"]
-  # end
 
   scope "/", BrandingHutWeb do
     pipe_through :browser
@@ -36,18 +44,6 @@ defmodule BrandingHutWeb.Router do
     # get("/*path", PageController, :index)
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", BrandingHutWeb do
-  #   pipe_through :api
-  # end
-
-  # Enables LiveDashboard only for development
-  #
-  # If you want to use the LiveDashboard in production, you should put
-  # it behind authentication and allow only admins to access it.
-  # If your application does not have an admins-only section yet,
-  # you can use Plug.BasicAuth to set up some basic authentication
-  # as long as you are also using SSL (which you should anyway).
   if Mix.env() in [:dev, :test] do
     import Phoenix.LiveDashboard.Router
 
@@ -58,10 +54,6 @@ defmodule BrandingHutWeb.Router do
     end
   end
 
-  # Enables the Swoosh mailbox preview in development.
-  #
-  # Note that preview only shows emails that were sent by the same
-  # node running the Phoenix server.
   if Mix.env() == :dev do
     scope "/dev" do
       pipe_through :browser

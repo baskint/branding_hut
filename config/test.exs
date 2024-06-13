@@ -24,7 +24,12 @@ config :branding_hut, BrandingHutWeb.Endpoint,
 config :branding_hut, BrandingHut.Mailer, adapter: Swoosh.Adapters.Test
 
 # Print only warnings and errors during test
-config :logger, level: :warn
+# config :logger, level: :warn
 
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :logger, :console,
+  level: :info,  # Set the minimum log level to display (optional)
+  format: "$time $metadata[$level] $message\n",
+  metadata: [:module, :function, :line]
