@@ -19,6 +19,7 @@ export const SparkActsWithData = () => {
   const [updateData, setUpdateData] = useState({});
 
   const resp = data as SparkActListResponse;
+  console.log(data);
 
   const onNew = useCallback(() => {
     setShowForm(!showForm);

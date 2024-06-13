@@ -48,7 +48,7 @@ defmodule BrandingHut.MixProject do
       {:phoenix_live_view, "~> 0.20.14"},
       {:floki, ">= 0.36.1", only: :test},
       {:phoenix_live_dashboard, "~> 0.8.3"},
-      {:esbuild, "~> 0.8.1", runtime: Mix.env() == :dev},
+      {:esbuild, "~> 0.7.1", runtime: Mix.env() == :dev},
       {:swoosh, "~> 1.16.3"},
       {:telemetry_metrics, "~> 1.0.0"},
       {:telemetry_poller, "~> 1.0"},
