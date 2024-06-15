@@ -87,5 +87,10 @@ defmodule BrandingHutWeb.Schema do
 
       resolve(&Resolvers.Affairs.create_post/3)
     end
+
+    # field :upload_csv, :csv_result do
+    #   arg :file, non_null(:upload)
+    #   resolve &BrandingHutWeb.Resolvers.CSVUpload.upload/3
+    # end
   end
 end
